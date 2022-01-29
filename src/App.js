@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React,{useState} from 'react';
+import AddContactForm from './components/AddContactForm';
+import ContactList from './components/ContactList';
 
 function App() {
+  const [id,setId]=useState("");
+  const handleContactById=id=>{
+    console.log("contact id to be edited",id);
+    setId(id);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-center">
+          <a class="navbar-brand" href="#">Contact</a>
+        </div>
+      </nav>
+      <div className="container" style={{width:"400px"}}>
+        <div className="row">
+          <div className="col">
+            <AddContactForm id={id} setId={setId}/>
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <ContactList getContactById={handleContactById} />
+      </div>
+    </>
   );
 }
 
